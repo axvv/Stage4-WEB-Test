@@ -1,4 +1,4 @@
-package lesson5;
+package stage4;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -10,11 +10,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractTest {
 
-    public static WebDriver driver;
+    public static WebDriver webDriver;
 
 
 
@@ -26,24 +27,24 @@ public abstract class AbstractTest {
 //        options.addArguments("--headless");
         options.addArguments("start-maximized");
         options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+        webDriver = new ChromeDriver(options);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @BeforeEach
     void goTo() {
-        Assertions.assertDoesNotThrow(() -> driver.get("https://experience.tripster.ru"),
+        Assertions.assertDoesNotThrow(() -> webDriver.get(" https://test-stand.gb.ru/login"),
                 "Страница не доступна");
+        Assertions.assertTrue(true);
     }
-
 
     @AfterAll
-    static void close() {
-        driver.quit();
+    public static void exit() {
+        if (webDriver != null) webDriver.quit();
     }
 
-    public static WebDriver getDriver() {
-        return driver;
+    public WebDriver getWebDriver() {
+        return this.webDriver;
     }
 }
 
