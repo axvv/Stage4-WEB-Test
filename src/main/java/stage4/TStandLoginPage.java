@@ -4,14 +4,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.util.Set;
 
 
-public class TestStandLoginPage extends AbstractPage {
+public class TStandLoginPage extends AbstractPage {
     private JavascriptExecutor js;
 
 
@@ -22,43 +17,100 @@ public class TestStandLoginPage extends AbstractPage {
 
     @FindBy(xpath = "//form[@id='login']/div[3]/button")
     private WebElement buttonLogin;
+    @FindBy(xpath = "//li[3]/a")
+    private WebElement buttonHello;
+    @FindBy(xpath = "//li[3]/span[2]")
+    private WebElement buttonLogout;
+    @FindBy(xpath = "//h2")
+    private WebElement titlePost;
+    @FindBy(xpath = "//a[contains(text(),'Previous Page')]")
+    private WebElement prevButton;
+    @FindBy(xpath = "//a[contains(text(),'Next Page')]")
+    private WebElement nextButton;
+    @FindBy(css = ".mdc-switch__icon--off")
+    private WebElement notMeSelector;
 
-
-    public TestStandLoginPage(WebDriver driver) {
+    public TStandLoginPage(WebDriver driver) {
         super(driver);
         this.js = (JavascriptExecutor) driver;
     }
 
-    public TestStandLoginPage clickButtonEnter() {
-        //      клик по кнопке Войти
-        buttonEnter.click();
-        return this;
-    }
 
-    public TestStandLoginPage clickPlaceEmail() {
+    public TStandLoginPage clickPlaceEmail() {
         //      клик по полю email
         placeUsername.click();
         return this;
     }
 
-    public TestStandLoginPage enterPlaceUsername() {
+    public TStandLoginPage enterPlaceUsername(String username) {
         //      ввод значения Username в поле Username
-        placeUsername.sendKeys("112user");
+        if (username != null) {
+            placeUsername.sendKeys("" + username);
+        }
         return this;
     }
 
-    public TestStandLoginPage enterPlacePassword() {
+    public TStandLoginPage enterPlacePassword(String password) {
         //      ввод пароля в поле password
-        placePassword.sendKeys("74ece1c259");
+        if (password != null) {
+            placePassword.sendKeys("" + password);
+        }
         return this;
     }
 
 
-    public TestStandLoginPage clickButtonLogin() {
+    public TStandLoginPage clickButtonLogin() {
         //      клик по кнопке Отправить
         buttonLogin.click();
         return this;
     }
 
+    public TStandLoginPage clickButtonHello() {
+        //      клик по кнопке Hello
+        buttonHello.click();
+        return this;
+    }
 
+    public TStandLoginPage clickButtonLogout() {
+        //      клик по кнопке Logout
+        buttonLogout.click();
+        return this;
+    }
+
+    public TStandLoginPage clickTitlePost() {
+        //      клик по заголовку поста
+        titlePost.click();
+        return this;
+    }
+    public TStandLoginPage clickPrevButton() {
+        //      клик по кнопке Previous Page
+        prevButton.click();
+        return this;
+    }
+    public TStandLoginPage clickNextButton() {
+        //      клик по кнопке Next Page
+        nextButton.click();
+        return this;
+    }
+    public TStandLoginPage clickNotMeSelector() {
+        //      клик по селектору Not Ne
+        notMeSelector.click();
+        return this;
+    }
+
+    public TStandLoginPage scrollDownPage() throws InterruptedException {
+        // перемещаемся вниз
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        //        пауза
+        Thread.sleep(1000);
+        return this;
+    }
+
+    public TStandLoginPage scrollUpPage()throws InterruptedException {
+        // перемещаемся вверх
+        js.executeScript("window.scrollTo(0, 0);");
+        //        пауза
+        Thread.sleep(1000);
+        return this;
+    }
 }

@@ -103,7 +103,7 @@
   <artifactId>allure-maven</artifactId>
   <version> 2.10.0 </version>
   <configuration>
-  <buildDirectory>C:\Users\USER\IdeaProjects\Sage4-WEB-Test</buildDirectory>
+  <buildDirectory>C:\Users\USER\IdeaProjects\Stage4-WEB-Test</buildDirectory>
   </configuration>
   </plugin>
   </plugins>
